@@ -1,3 +1,33 @@
+## 1.1.6 - 2025-08-06
+
+- Added error handling when encoding the request body, mostly to catch malformed UTF-8
+- Fixed: Using consistent URI path naming scheme before passing the path to the HTTP client
+
+## 1.1.5 - 2025-08-04
+
+- Added `prefixlen` attribute to the `inetnum` and `inet6num` objects
+- Updated RPSL definitions to RIPE DB version 1.118
+
+## 1.1.4 - 2025-07-21
+
+- Changed authentication to only use the `Authorization` header
+- Added support for API keys
+
+## 1.1.3 - 2024-06-25
+
+- Updated RPSL definitions to RIPE DB version 1.112
+
+## 1.1.2 - 2022-11-03
+
+- Updated RPSL definitions to RIPE DB version 1.104
+
+## 1.1.1 - 2022-11-03
+
+- Added `geofeed` attribute to the `inetnum` and `inet6num` objects
+- Added Docker container setup for PHP 7
+- Fixed: `getPrimaryKey()` now returns the full composite key for `route` and `route6` objects
+- Updated RPSL definitions to RIPE DB version 1.102
+
 ## 1.1.0 - 2021-03-16
 
 - BC Break: Removed support for PHP 5

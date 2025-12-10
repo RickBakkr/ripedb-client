@@ -4,29 +4,23 @@ use PHPUnit\Framework\TestCase;
 use Dormilich\WebService\RIPE\RPSL\Route;
 use Dormilich\WebService\RIPE\RPSL\Route6;
 
-/**
- * PrimaryObjectsTest
- */
 class PrimaryObjectsTest extends TestCase
 {
-    /**
-     * @return string[][]
-     */
-    public static function objectTypeProvider()
+	public function objectTypeProvider()
 	{
 		return [
 			['AutNum', 		'aut-num'],
-			['Domain', 		'domain'],
-			['Inet6num', 	'inet6num'],
-			['Inetnum', 	'inetnum'],
-			['Route', 		'route'],
-			['Route6', 		'route6'],
-			['AsSet', 		'as-set'],
-			['FilterSet', 	'filter-set'],
-			['InetRtr', 	'inet-rtr'],
-			['PeeringSet', 	'peering-set'],
-			['RouteSet', 	'route-set'],
-			['RtrSet', 		'rtr-set'],
+			['Domain', 		'domain'], 
+			['Inet6num', 	'inet6num'], 
+			['Inetnum', 	'inetnum'], 
+			['Route', 		'route'], 
+			['Route6', 		'route6'], 
+			['AsSet', 		'as-set'], 
+			['FilterSet', 	'filter-set'], 
+			['InetRtr', 	'inet-rtr'], 
+			['PeeringSet', 	'peering-set'], 
+			['RouteSet', 	'route-set'], 
+			['RtrSet', 		'rtr-set'], 
 		];
 	}
 
@@ -41,10 +35,7 @@ class PrimaryObjectsTest extends TestCase
 		$this->assertEquals('123', $obj->getPrimaryKey());
 	}
 
-    /**
-     * @return array
-     */
-    public static function routeKeyProvider()
+	public function routeKeyProvider()
 	{
 		return [
 			['192.168.2.0/24',        '192.168.2.0/24',       '192.168.2.0/24', null],
@@ -65,10 +56,7 @@ class PrimaryObjectsTest extends TestCase
 		$this->assertEquals($origin, $obj['origin']);
 	}
 
-    /**
-     * @return array
-     */
-    public static function route6KeyProvider()
+	public function route6KeyProvider()
 	{
 		return [
 			['2001:db8:8d3::/48',        '2001:db8:8d3::/48',       '2001:db8:8d3::/48', null],
