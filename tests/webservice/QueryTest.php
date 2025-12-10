@@ -8,34 +8,16 @@ use PHPUnit\Framework\TestCase;
 use Test\MockClient;
 use Test\RegObject;
 
-<<<<<<< HEAD:tests/webservice/URLTest.php
-/**
- * URLTest
- */
-class URLTest extends TestCase
-{
-    /**
-     * @param $name
-     * @return \Test\MockClient
-     */
-    public function getClient($name = NULL)
-	{
-		return new Test\MockClient('[]');
-=======
 class QueryTest extends TestCase
 {
 	public function getClient(): MockClient
     {
 		return new MockClient('[]');
->>>>>>> 691d25e14afbc701f68cd9599992b45d56f67c26:tests/webservice/QueryTest.php
 	}
 
 	// read
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectDefaultRequestParameters()
+	public function testClientGetsCorrectDefaultRequestParameters()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -54,10 +36,7 @@ class QueryTest extends TestCase
         $this->assertEquals('application/json', $client->header['Accept']);
 	}
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectUrlForNoOptions()
+	public function testClientGetsCorrectUrlForNoOptions()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -73,10 +52,7 @@ class QueryTest extends TestCase
         $this->assertEquals('application/json', $client->header['Accept']);
 	}
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectProductionUrlAfterChange()
+	public function testClientGetsCorrectProductionUrlAfterChange()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -96,10 +72,7 @@ class QueryTest extends TestCase
         $this->assertEquals('application/json', $client->header['Accept']);
 	}
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectCustomRequestParameters()
+	public function testClientGetsCorrectCustomRequestParameters()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client, [
@@ -121,10 +94,7 @@ class QueryTest extends TestCase
         $this->assertEquals('application/json', $client->header['Accept']);
 	}
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectSandboxUrlAfterChange()
+	public function testClientGetsCorrectSandboxUrlAfterChange()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client, [
@@ -148,10 +118,7 @@ class QueryTest extends TestCase
 
 	// version
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectVersionRequest()
+	public function testClientGetsCorrectVersionRequest()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -170,10 +137,7 @@ class QueryTest extends TestCase
 
 	// versions
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectVersionsRequest()
+	public function testClientGetsCorrectVersionsRequest()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -192,10 +156,7 @@ class QueryTest extends TestCase
 
 	// search
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectSearchRequestFromArray()
+	public function testClientGetsCorrectSearchRequestFromArray()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -217,10 +178,7 @@ class QueryTest extends TestCase
         $this->assertEquals('application/json', $client->header['Accept']);
 	}
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectSearchRequestFromString()
+	public function testClientGetsCorrectSearchRequestFromString()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -239,10 +197,7 @@ class QueryTest extends TestCase
         $this->assertEquals('application/json', $client->header['Accept']);
 	}
 
-    /**
-     * @return void
-     */
-    public function testSearchRequestFailsOnNonQuery()
+	public function testSearchRequestFailsOnNonQuery()
 	{
 	    $this->expectException(InvalidValueException::class);
 
@@ -254,10 +209,7 @@ class QueryTest extends TestCase
 
 	// abuse
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectAbuseRequest()
+	public function testClientGetsCorrectAbuseRequest()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -276,10 +228,7 @@ class QueryTest extends TestCase
 
 	// template
 
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectTemplateRequest()
+	public function testClientGetsCorrectTemplateRequest()
 	{
 		$client = $this->getClient();
 		$ripe   = new WebService($client);
@@ -290,102 +239,8 @@ class QueryTest extends TestCase
 		$this->assertEquals('GET', $client->method);
 		$this->assertEquals('https://rest-test.db.ripe.net/metadata/templates/poem', $client->url);
 		$this->assertNull($client->body);
-<<<<<<< HEAD:tests/webservice/URLTest.php
-	}
-
-	// create
-
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectCreateRequest()
-	{
-		$client = $this->getClient();
-		$ripe   = new WebService($client);
-		$obj    = new RegObject('create');
-
-		$ripe->create($obj);
-
-		$expected = '{"objects":{"object":[{"source":{"id":"TEST"},"attributes":{"attribute":[{"name":"register","value":"create"},{"name":"source","value":"TEST"}]}}]}}';
-
-		$this->assertEquals('POST', $client->method);
-		$this->assertEquals('https://rest-test.db.ripe.net/test/register?password=emptypassword', $client->url);
-		$this->assertEquals($expected, $client->body);
-	}
-
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectCreateUrlAfterChange()
-	{
-		$client = $this->getClient();
-		$ripe   = new WebService($client);
-		$obj    = new RegObject('create');
-
-		$ripe->setEnvironment(WebService::PRODUCTION);
-		$ripe->setPassword('super-secret');
-
-		$ripe->create($obj);
-
-		$this->assertEquals('https://rest.db.ripe.net/ripe/register?password=super-secret', $client->url);
-	}
-
-	// update
-
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectUpdateRequest()
-	{
-		$client = $this->getClient();
-		$ripe   = new WebService($client);
-		$obj    = new RegObject('update');
-
-		$ripe->update($obj);
-
-		$expected = '{"objects":{"object":[{"source":{"id":"TEST"},"attributes":{"attribute":[{"name":"register","value":"update"},{"name":"source","value":"TEST"}]}}]}}';
-
-		$this->assertEquals('PUT', $client->method);
-		$this->assertEquals('https://rest-test.db.ripe.net/test/register/update?password=emptypassword', $client->url);
-		$this->assertEquals($expected, $client->body);
-	}
-
-	// delete
-
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectDeleteRequest()
-	{
-		$client = $this->getClient();
-		$ripe   = new WebService($client);
-
-		$person = new RegObject('FOO');
-		$ripe->delete($person);
-
-		$this->assertEquals('DELETE', $client->method);
-		$this->assertEquals('https://rest-test.db.ripe.net/test/register/FOO?password=emptypassword', $client->url);
-		$this->assertNull($client->body);
-	}
-
-    /**
-     * @return void
-     */
-    public function testClientGetsCorrectDeleteRequestWithReason()
-	{
-		$client = $this->getClient();
-		$ripe   = new WebService($client);
-
-		$person = new RegObject('FOO');
-		$ripe->delete($person, 'because I can!');
-
-		$this->assertEquals('DELETE', $client->method);
-		$this->assertEquals('https://rest-test.db.ripe.net/test/register/FOO?reason=because%20I%20can%21&password=emptypassword', $client->url);
-		$this->assertNull($client->body);
-=======
         $this->assertArrayNotHasKey('Authorization', $client->header);
         $this->assertArrayHasKey('Accept', $client->header);
         $this->assertEquals('application/json', $client->header['Accept']);
->>>>>>> 691d25e14afbc701f68cd9599992b45d56f67c26:tests/webservice/QueryTest.php
 	}
 }
