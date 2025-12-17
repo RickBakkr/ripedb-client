@@ -199,10 +199,7 @@ class WebService
         }
         elseif ($environment === self::SANDBOX) {
             $this->setHost(self::SANDBOX_HOST);
-            $this->setUsername('TEST-DBM-MNT');
-            $this->setPassword('emptypassword');
-        }
-        else {
+        }else {
             $this->setHost($this->config['location']);
         }
 
